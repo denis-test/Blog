@@ -1,8 +1,4 @@
 <?php
-ini_set('error_reporting', E_ALL);
-ini_set('display_errors', 1);
-var_dump('Hello!');
-
 
 class Loader{
 	protected static $instance = null;
@@ -16,9 +12,10 @@ class Loader{
 		return self::$instance;
 	}
 	
-	
+	/*
+	 * Method for autoload classes based namespaces
+	 */
 	public static function load($classname){
-		// @TODO: Add here some registered $namespaces processing...
 		$str_pos = strpos ($classname , '\\');
 		$sub_str = substr($classname, 0, $str_pos + 1);
 				
@@ -29,13 +26,13 @@ class Loader{
 			if(file_exists($path)){
 				include_once($path);
 			}
-			return;
-		}
+		}else{
 		
-		$path = str_replace('Framework','',$classname);
-		$path = __DIR__ . str_replace("\\","/", $path) . '.php';
-		if(file_exists($path)){
-			include_once($path);
+			$path = str_replace('Framework','',$classname);
+			$path = __DIR__ . str_replace("\\","/", $path) . '.php';
+			if(file_exists($path)){
+				include_once($path);
+			}
 		}
 	}
 	
