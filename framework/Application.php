@@ -6,7 +6,12 @@ namespace Framework;
  */
 class Application {
 	public function run(){
-		var_dump('public function run()');
-		$pc = new \Blog\Controller\PostController();
+		$router = new Router(include('../app/config/routes.php'));
+		$route =  $router->parseRoute($_SERVER['REQUEST_URI']);
+		if(!empty($route)){
+			echo 'Route was not found';
+		} else {
+			echo 'Route was found';
+		}
 	}
 } 
