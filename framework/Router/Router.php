@@ -51,6 +51,7 @@ class Router{
 				
 			foreach ($placeholders as $key => $placeholder) {
 				$placeholder = str_replace(array('{','}'), '', $placeholder);
+				$route_found = $route['pattern'];
 				
 				if (isset($route['_requirements'][$placeholder])){
 					$pattern = '~^'. $route['_requirements'][$placeholder].'$~';
@@ -59,7 +60,7 @@ class Router{
 				}
 				
 				if(isset($params[$placeholder]) && preg_match($pattern, $params[$placeholder], $result)){
-					$route_found = str_replace('{'.$placeholder.'}', $params[$placeholder], $route['pattern']);
+					$route_found = str_replace('{'.$placeholder.'}', $params[$placeholder], $route_found);
 				}else{
 					$route_found = '';
 					break;
