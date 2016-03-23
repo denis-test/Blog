@@ -15,10 +15,10 @@ class Router{
 		self::$map = $routing_map;
 	}
 	/**
-	 * Parse URL
-	 *
-	 * @param $url
-	 */
+         * 
+         * @param type $url
+         * @return type
+         */
 	public function parseRoute($url){
     
 		$route_found = null;
@@ -40,6 +40,12 @@ class Router{
 		return $route_found;
 	}
 	
+        /**
+         * 
+         * @param type $route_name
+         * @param type $params
+         * @return string
+         */
 	public function buildRoute($route_name, $params = array()){
 		$route_found = '';
 		
