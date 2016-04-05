@@ -21,7 +21,7 @@ abstract class AbstractResponseException extends \Exception
 	
 	public function getResponse()
 	{
-		$layout = Service::get('configuration')->get('error_500'); //
+		$layout = Service::get('configuration')->get('error_500');
 		        
 		$content = Service::get('renderer')->render($layout, array('message' => $this->getMessage(), 'code'=>$this->code ) );
 		return  new Response($content);
